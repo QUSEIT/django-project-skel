@@ -45,6 +45,7 @@ class ManagerLogin(BaseHandler):
         return render(request,
                       self.template_name)
 
+
 class ManagerIndex(BaseHandler):
     #首页
     template_name="backs/index.html"
@@ -52,6 +53,7 @@ class ManagerIndex(BaseHandler):
     def get(self, request):
         return render(request,
                       self.template_name)
+        
 
 class NotFoundPage(BaseHandler):
     template_name = 'backs/404.html'

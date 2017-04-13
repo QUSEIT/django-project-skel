@@ -20,5 +20,9 @@ class Index(BaseHandler):
     template_name = 'app/index.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+
+        def func():
+            for i in ['a', 'b', 'c']:
+                yield {i: i}
+        return render(request, self.template_name, {'data': func()})
 
