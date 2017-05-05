@@ -1,5 +1,5 @@
 # 环境
-1. Django == 1.9.5
+1. Django == 1.11
 2. MySql 
 
 # Python Module
