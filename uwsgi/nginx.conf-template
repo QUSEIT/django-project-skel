@@ -1,0 +1,23 @@
+upstream django {
+    server unix:///mnt/data/tiantian/ttke.sock;
+}
+
+server {
+    listen 80;
+    server_name wwww.domain.com;
+
+    client_max_body_size 50m;
+
+    location /static/ {
+        alias /mnt/data/tiantian/static/;
+    }
+
+    location / {
+        uwsgi_pass  django;
+        proxy_read_timeout 30s;
+        proxy_send_timeout 30s;
+        include /mnt/data/tiantian/uwsgi_params;
+    }
+
+    error_page 403 /static/backend/page-not-found.html;
+}
