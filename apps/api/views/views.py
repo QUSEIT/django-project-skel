@@ -1,8 +1,10 @@
 #--*--coding:utf-8--*--
 from apps.backs.views.base_views import BaseHandler
+from apps.api.logger import logger_decorator
 
 
 class Example(BaseHandler):
+    @logger_decorator
     def get(self, request):
         data = {
             'list': map(lambda x: x * 2, range(10)),

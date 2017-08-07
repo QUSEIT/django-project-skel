@@ -11,6 +11,7 @@ from apps.api.utils import backs_token
 from apps.api.utils import get_client_ip
 #import form
 from apps.backs.forms.user_form import UpdataPasswordForm
+from apps.api.logger import logger_decorator
 
 
 class ManagerLogin(BaseHandler):
@@ -49,7 +50,8 @@ class ManagerLogin(BaseHandler):
 class ManagerIndex(BaseHandler):
     #首页
     template_name="backs/index.html"
-    @login()
+    #@login()
+    @logger_decorator
     def get(self, request):
         return render(request,
                       self.template_name)

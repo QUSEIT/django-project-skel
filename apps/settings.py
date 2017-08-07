@@ -4,6 +4,7 @@ import os.path
 USR_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+ROOT_PATH = BASE_DIR
 
 BACKS_LOGIN_URL = '/manager/login'
 LOGIN_URL = '/login'
@@ -23,7 +24,7 @@ ALLOWED_HOSTS = ['*']
 
 
 ADMINS = (
-    #('River', 'support@qpython.org'),
+    ('anlim', 'anlim@quseit.com'),
 )
 
 MANAGERS = ADMINS
@@ -178,6 +179,7 @@ INSTALLED_APPS = (
     'apps.backs',
     'apps.app',
     'apps.api',
+    'pydash', # pydash
 )
 
 # A sample logging configuration. The only tangible logging
@@ -185,27 +187,60 @@ INSTALLED_APPS = (
 # the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+print ROOT_PATH
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        }
-    },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
-            'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'console':{
+            'level':'DEBUG',
+            'class':'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        'logfile': {
+            'level':'DEBUG',
+            'class':'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(ROOT_PATH, 'django.log'),
+            'maxBytes': 1024*1024*5, # 5MB
+            'backupCount': 0,
+            'formatter': 'verbose',
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s-%(asctime)s@@%(message)s',
+            #'format': '%(asctime)-15s %(levelname)s %(filename)s %(lineno)d %(process)d %(message)s',
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s|%(message)s'
+        },
     },
     'loggers': {
-        'django.request': {
+        'apps.request': {
             'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'apps.models': {
+            'handlers': ['console', 'logfile'],
             'level': 'DEBUG',
             'propagate': True,
         },
+        'apps.api.logger':{
+            'handlers': ['console', 'logfile'],
+            'level': 'DEBUG',
+            'propagate': True,
+        }
     }
 }
 
+
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
