@@ -19,10 +19,17 @@ def logger_decorator(method):
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         result = method(self, *args, **kwargs)
+        print self.request.body
+        try:
+            json_data = json.loads(self.request.body)
+        except Exception as e:
+            json_data = {}
+            #print e
         log = {
             'url': self.request.get_full_path(),
             'method': self.request.method,
             'params': self.request.POST.dict() or self.request.GET.dict(),
+            'json_data': json_data,
             'is_ajax': self.request.is_ajax(),
             'user': self.request.user.username,
             'ip': get_client_ip(self.request)

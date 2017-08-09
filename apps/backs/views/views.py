@@ -53,8 +53,13 @@ class ManagerIndex(BaseHandler):
     #@login()
     @logger_decorator
     def get(self, request):
+        print "ok"
         return render(request,
                       self.template_name)
+
+    @logger_decorator
+    def post(self, request):
+        return self.write_json({'errno': 0, 'msg': 'success'})
         
 
 class NotFoundPage(BaseHandler):
