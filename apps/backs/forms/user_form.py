@@ -28,7 +28,7 @@ class UpdataPasswordForm(forms.Form):
         cd = self.cleaned_data
         confirm_password = cd.get("confirm_password")
         password = cd.get("password")
-        if confirm_password <> password:
+        if confirm_password != password:
             raise forms.ValidationError("*两次密码不一致")
         return confirm_password
 

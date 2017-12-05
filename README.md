@@ -21,4 +21,9 @@ CREATE DATABASE `djangoapp` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 4. python manage.py runserver －－ 运行项目
 5. python manage.py collectstatic －－静态资源自动整合
 
+# Upgrade Django 2.0
+
+1. pip install mysqlclient
+
+2. ForeignKey : null=True, on_delete=models.SET_NULL
 

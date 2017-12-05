@@ -4,11 +4,12 @@
 一个views对应一个models(apps.models.xx_models)
 """
 from django.conf.urls import url #patterns
-from views import views
+from .views import views
 
 
 urlpatterns = [
     url(r'^$', views.ManagerLogin.as_view()),
+    url(r'^home$', views.home),
     url(r'^login$', views.ManagerLogin.as_view()),
     url(r'^login_out$', views.ManagerLoginOut.as_view()),
     url(r'^index$', views.ManagerIndex.as_view()),

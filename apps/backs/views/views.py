@@ -1,6 +1,6 @@
 #-*-coding:utf8;-*-
 from django.shortcuts import render_to_response, redirect, render, get_object_or_404
-from base_views import BaseHandler
+from .base_views import BaseHandler
 from django.contrib.auth import authenticate
 
 from datetime import datetime
@@ -13,12 +13,17 @@ from apps.api.utils import get_client_ip
 from apps.backs.forms.user_form import UpdataPasswordForm
 from apps.api.logger import logger_decorator
 
+def home(request):
+    template_name = 'backs/index.html'
+    print(request.session)
+    return render(request, template_name)
 
 class ManagerLogin(BaseHandler):
     #登录
     NEXT_PATH = "/manager/index" #default backs index
     template_name = 'backs/login.html'
     def get(self, request):
+        print(dir(request))
         user_id = request.session.get('backs_user_id', None)
         token = request.session.get('backs_token', None)
         #如果session有效，则跳转到后台首页
@@ -53,7 +58,6 @@ class ManagerIndex(BaseHandler):
     #@login()
     @logger_decorator
     def get(self, request):
-        print "ok"
         return render(request,
                       self.template_name)
 
@@ -70,7 +74,6 @@ class NotFoundPage(BaseHandler):
 class ManagerLoginOut(BaseHandler):
     def get(self, request):
         request.session.clear()
-        print 'aaaaaaaaa'
         return redirect('/manager/login')
 
 

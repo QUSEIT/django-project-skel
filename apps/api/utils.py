@@ -54,7 +54,7 @@ def separate(num):
     try:
         num = float('%0.2f'% float(num))
         return '{:,}'.format(num)
-    except Exception, e:
+    except Exception as e:
         return num
     
     #return num

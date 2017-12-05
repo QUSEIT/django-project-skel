@@ -7,8 +7,8 @@ class Example(BaseHandler):
     @logger_decorator
     def get(self, request):
         data = {
-            'list': map(lambda x: x * 2, range(10)),
-            'filter_data': filter(lambda x: x % 2 ==1, range(10)),
+            'list': list(map(lambda x: x * 2, range(10))),
+            'filter_data': list(filter(lambda x: x % 2 ==1, range(10))),
             'data': {
                 'icon': None
             }

@@ -6,9 +6,9 @@ from django.contrib.auth.models import User
 class UserList(BaseHandler):
     def get(self, request):
         data = {
-            'list': range(10),
+            'list': list(range(10)),
             'data': {
-                'icon': range(20)
+                'icon': list(range(20))
             },
             'user': list(User.objects.filter().values('username', 'email', 'is_active', 'is_superuser'))
         }
