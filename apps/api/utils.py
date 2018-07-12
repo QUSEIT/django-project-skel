@@ -54,10 +54,8 @@ def separate(num):
     try:
         num = float('%0.2f'% float(num))
         return '{:,}'.format(num)
-    except Exception, e:
+    except Exception:
         return num
-    
-    #return num
 
 def generate_password(password):
     """generate password"""

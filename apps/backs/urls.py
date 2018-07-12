@@ -4,7 +4,7 @@
 一个views对应一个models(apps.models.xx_models)
 """
 from django.conf.urls import url #patterns
-from views import views
+from apps.backs.views import views
 
 
 urlpatterns = [

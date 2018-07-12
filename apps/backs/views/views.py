@@ -1,6 +1,6 @@
 #-*-coding:utf8;-*-
 from django.shortcuts import render_to_response, redirect, render, get_object_or_404
-from base_views import BaseHandler
+from .base_views import BaseHandler
 from django.contrib.auth import authenticate
 
 from datetime import datetime
@@ -53,14 +53,13 @@ class ManagerIndex(BaseHandler):
     #@login()
     @logger_decorator
     def get(self, request):
-        print "ok"
         return render(request,
                       self.template_name)
 
     @logger_decorator
     def post(self, request):
         return self.write_json({'errno': 0, 'msg': 'success'})
-        
+
 
 class NotFoundPage(BaseHandler):
     template_name = 'backs/404.html'
@@ -70,7 +69,6 @@ class NotFoundPage(BaseHandler):
 class ManagerLoginOut(BaseHandler):
     def get(self, request):
         request.session.clear()
-        print 'aaaaaaaaa'
         return redirect('/manager/login')
 
 

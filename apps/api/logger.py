@@ -19,7 +19,6 @@ def logger_decorator(method):
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         result = method(self, *args, **kwargs)
-        print self.request.body
         try:
             json_data = json.loads(self.request.body)
         except Exception as e:

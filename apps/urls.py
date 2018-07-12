@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from backs.views import views
+from apps.backs.views import views
 from django.http import Http404
 
 handler404 = views.NotFoundPage.as_view()
@@ -8,8 +8,8 @@ handler404 = views.NotFoundPage.as_view()
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^pydash/', include('pydash.urls')),
+    url(r'^admin/', admin.site.urls),
+    #url(r'^pydash/', include('pydash.urls')),
     url(r'', include('apps.app.urls')),
     url(r'^manager/', include('apps.backs.urls')),
     url(r'^api/', include('apps.api.urls')),
