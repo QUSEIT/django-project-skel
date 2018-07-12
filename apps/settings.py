@@ -143,7 +143,7 @@ STATICFILES_DIRS = (
 SECRET_KEY = '#%lx&y2s9trk4k9pz^c0&0x^x!z$5gn*ew6w0yumu1@icewxtf'
 
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     #'django.middleware.csrf.CsrfViewMiddleware',
