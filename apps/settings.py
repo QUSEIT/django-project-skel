@@ -188,9 +188,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'apps.backs',
-    'apps.app',
+    'apps.main',
     'apps.api',
-    'pydash', # pydash
 )
 
 # A sample logging configuration. The only tangible logging

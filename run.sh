@@ -1,7 +1,7 @@
-export DB_NAME=superme
-export DB_HOST=127.0.0.1
-export DB_PASSWORD=Quseit520
-export DB_PORT=5432
-export DB_USER=dbuser
+export DB_NAME=<PLEASE REPLACE>
+export DB_HOST=<PLEASE REPLACE>
+export DB_PASSWORD=<PLEASE REPLACE>
+export DB_PORT=<PLEASE REPLACE,default postgresql:5432>
+export DB_USER=<PLEASE REPLACE>
 
 python manage.py runserver 0.0.0.0:2800

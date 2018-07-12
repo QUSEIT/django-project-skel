@@ -9,8 +9,7 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    #url(r'^pydash/', include('pydash.urls')),
-    url(r'', include('apps.app.urls')),
+    url(r'', include('apps.main.urls')),
     url(r'^manager/', include('apps.backs.urls')),
     url(r'^api/', include('apps.api.urls')),
     url(r'^404$', views.NotFoundPage.as_view()),
