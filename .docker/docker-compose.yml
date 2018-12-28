@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+  backend:
+    build: ../application/.
+    env_file:
+      - ../.env
+    volumes:
+      - ../application:/quseit-server
+    command: gunicorn --reload apps.wsgi --timeout=30 --bind 0.0.0.0:$PORT --access-logfile - --daemon
+    ports:
+      - "${PORT}:${PORT}"
+    depends_on:
+      - db
