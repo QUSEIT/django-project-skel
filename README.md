@@ -18,6 +18,29 @@ pip install -r requirements.txt
 4. python manage.py runserver －－ 运行项目
 5. python manage.py collectstatic －－静态资源自动整合
 
-# 部署
+# Docker启动
+1. 编辑application/.env, 配置项目及数据库字段
+2. 如数据库未初始化, 使用`make migrate` 进行初始化表
+3. 使用`make up`启动docker compose
+4. 如改动后未重新生成镜像, 可使用`make build`重新生成镜像容器
+
+# Makefile 命令
+- default 
+- up 
+    启动服务
+- build 
+    若修改了Dockerfile, 可通过该命令重建镜像
+- stop 
+    停止服务
+- restart 
+    重启服务
+- down 
+    删除已停止的容器
+- migrate 
+    将django数据表migrate至数据库
+- log 
+    查看容器日志输出
+- enter_db
+    进入数据库
 
 支持Docker部署
