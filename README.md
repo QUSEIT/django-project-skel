@@ -43,4 +43,35 @@ pip install -r requirements.txt
 - enter_db
     进入数据库
 
-支持Docker部署
+# 项目详情:
+项目模板结构为:
+
+```
+root
+├── .docker
+│   └── docker-compose.yml
+├── .env
+├── Makefile
+├── README.md
+└── application(Django项目根目录)
+```
+
+该例中使用docker-compose构建, 使用远程数据库, 数据库相关配置写在.env中, docker-compose.yml内容修改为如下
+
+```
+version: '3'
+
+services:
+  db:
+    image: postgres
+  backend:
+    build: ../application
+    env_file: ../.env
+    command: gunicorn --reload apps.wsgi --timeout=30 --bind 0.0.0.0:$PORT --access-logfile -
+    ports:
+      - "$PORT:$PORT"
+    depends_on:
+      - db
+```
+
+其中services/backend/build字段为django项目路径, 如果填写的是本地路径则在该项目中存在Dockerfile文件, 除填写本地路径外还可填写远端Docker仓库的镜像名称.
